@@ -1,0 +1,4 @@
+# blpapi==3.25.11  # Installed manually via wheel
+flask==3.0.0
+flask-cors==4.0.0
+python-dotenv==1.0.0
