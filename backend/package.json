@@ -1,0 +1,25 @@
+{
+    "name": "credit-rating-backend",
+    "version": "1.0.0",
+    "description": "Backend API for credit rating dashboard",
+    "type": "module",
+    "scripts": {
+        "dev": "tsx watch src/server.ts",
+        "build": "tsc",
+        "start": "node dist/server.js"
+    },
+    "dependencies": {
+        "express": "^4.21.2",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.7",
+        "node-fetch": "^3.3.2",
+        "axios": "^1.6.0"
+    },
+    "devDependencies": {
+        "@types/node": "^22.10.5",
+        "@types/express": "^5.0.0",
+        "@types/cors": "^2.8.17",
+        "typescript": "^5.7.2",
+        "tsx": "^4.19.2"
+    }
+}

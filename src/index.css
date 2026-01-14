@@ -1,0 +1,364 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap');
+
+:root {
+  /* Bloomberg Palette */
+  --bg-primary: #000000;
+  --bg-secondary: #000000;
+  --bg-tertiary: #000000;
+  --bg-hover: #1A1A1A;
+  --bg-command: #00008B;
+  /* Dark Blue for command line */
+
+  --text-primary: #E0E0E0;
+  /* Standard terminal text */
+  --text-header: #FFB000;
+  /* Amber for headers */
+  --text-data: #00FFFF;
+  /* Cyan for data values */
+  --text-input: #FFFFFF;
+
+  --border-color: #333333;
+  --border-active: #FFB000;
+
+  /* Status Colors (High Contrast) */
+  --color-green: #00FF00;
+  /* Lime Green */
+  --color-green-bg: #000000;
+  --color-red: #FF0000;
+  /* Pure Red */
+  --color-red-bg: #000000;
+  --color-amber: #FFB000;
+  --color-amber-bg: #000000;
+
+  /* Spacing (Dense) */
+  --spacing-xs: 2px;
+  --spacing-sm: 4px;
+  --spacing-md: 8px;
+  --spacing-lg: 12px;
+  --spacing-xl: 16px;
+
+  /* No Radius */
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+
+  /* No Transitions (Instant) */
+  --transition-fast: 0s;
+  --transition-normal: 0s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Consolas', 'Courier New', monospace;
+  /* Native font stack preferred */
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 11px;
+  /* High density */
+  line-height: 1.2;
+  -webkit-font-smoothing: none;
+  /* Crisp edges */
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollbar Styling (Retro/Minimal) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111;
+  border-left: 1px solid #333;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #444;
+  border: 1px solid #000;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+::-webkit-scrollbar-corner {
+  background: #000;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: inherit;
+  font-weight: 700;
+  color: var(--text-header);
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  font-size: 14px;
+}
+
+h2 {
+  font-size: 13px;
+}
+
+h3 {
+  font-size: 12px;
+}
+
+/* Buttons as Text Commands */
+button {
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 6px;
+  background: transparent;
+  color: var(--text-header);
+  /* Amber text */
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+button:hover {
+  background: var(--bg-hover);
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+
+button.primary {
+  color: var(--color-green);
+}
+
+/* Inputs (Terminal Style) */
+input,
+select {
+  font-family: inherit;
+  font-size: 11px;
+  background: #000000;
+  color: var(--text-input);
+  border: 1px solid var(--border-color);
+  padding: 2px 4px;
+  border-radius: 0;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--text-header);
+  background: #111;
+}
+
+/* Status Colors Classes */
+.status-green {
+  color: var(--color-green) !important;
+}
+
+.status-red {
+  color: var(--color-red) !important;
+}
+
+.status-amber {
+  color: var(--color-amber) !important;
+}
+
+.status-neutral {
+  color: var(--text-primary) !important;
+}
+
+/* Layout Containers */
+.app-container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  /* Header, Body */
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Content Header (Command Bar area usually) */
+.content-header {
+  padding: var(--spacing-sm);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content-body {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Table Styles - Rigid Grid */
+.table-container {
+  flex: 1;
+  overflow: hidden;
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.table-wrapper {
+  overflow: auto;
+  flex: 1;
+  border-top: 1px solid var(--border-color);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  /* Essential for grid lines */
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  /* Lower than frozen columns (101) */
+  background: #000000;
+}
+
+th {
+  background: #000000;
+  color: var(--text-header);
+  font-weight: normal;
+  text-align: left;
+  padding: 2px 4px;
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-search);
+  white-space: nowrap;
+  position: relative;
+  /* Establish stacking context */
+  z-index: 10;
+  /* Same as thead, lower than frozen (101) */
+}
+
+/* Borders for table cells */
+td {
+  padding: 2px 4px;
+  border-right: 1px solid #222;
+  /* Very subtle vertical lines */
+  border-bottom: 1px solid #222;
+  color: var(--text-data);
+  /* Cyan default for data */
+  white-space: nowrap;
+}
+
+/* Frozen Columns - pure black opaque background */
+th.frozen,
+td.frozen {
+  position: sticky;
+  left: 0;
+  z-index: 101;
+  /* Higher than thead (100) so it stays on top */
+  background: #000000;
+  border-right: 1px solid var(--text-header);
+  /* Stronger separator for frozen col */
+  min-width: 120px;
+}
+
+th.frozen-region,
+td.frozen-region {
+  position: sticky;
+  left: 120px;
+  /* Matches min-width of frozen column */
+  z-index: 101;
+  /* Higher than thead (100) so it stays on top */
+  background: #000000;
+  border-right: 1px solid var(--border-color);
+}
+
+/* Row Hover - Invert colors or subtle grey */
+tbody tr:hover td {
+  background: #111;
+}
+
+/* Clickable cells */
+td.clickable:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #FFFFFF;
+}
+
+/* Filter Panel - Dense Row */
+.filter-panel {
+  padding: var(--spacing-sm);
+  border-bottom: 1px solid var(--border-color);
+  background: #000;
+}
+
+.filter-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  align-items: flex-end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-group label {
+  color: var(--text-header);
+  font-size: 10px;
+  margin-bottom: 2px;
+}
+
+/* Command Line Input Styling */
+.cmd-input-wrapper {
+  display: flex;
+  align-items: center;
+  background: var(--bg-command);
+  padding: 2px 5px;
+  width: 300px;
+}
+
+.cmd-prompt {
+  color: #FFF;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.cmd-input {
+  background: transparent;
+  border: none;
+  color: #FFF;
+  width: 100%;
+  font-family: inherit;
+  font-size: 11px;
+  text-transform: uppercase;
+  caret-color: white;
+}
+
+.cmd-input:focus {
+  background: transparent;
+  border: none;
+}
+
+/* Utility */
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}

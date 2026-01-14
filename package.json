@@ -1,0 +1,29 @@
+{
+  "name": "credit-rating-alert",
+  "version": "1.0.0",
+  "description": "Credit rating alert dashboard with Bloomberg API integration",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "server": "node backend/dist/server.js",
+    "server:dev": "tsx watch backend/src/server.ts",
+    "build:server": "tsc -p backend/tsconfig.json"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "@tanstack/react-query": "^5.62.8",
+    "axios": "^1.7.9",
+    "date-fns": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.6",
+    "tsx": "^4.19.2"
+  }
+}
